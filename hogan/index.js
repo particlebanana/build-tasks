@@ -42,12 +42,12 @@ task.registerHelper('hogan', function(files) {
     if (!openedFile) return;
     var name = filepath.split('/');
     name = name[name.length - 1].split('.html')[0];
-    return 'templates.' + name + ' = new Hogan.Template(' + hogan.compile(openedFile, { asString: 1 }) + ');';
+    return 'window.T.' + name + ' = new Hogan.Template(' + hogan.compile(openedFile, { asString: 1 }) + ');';
   }).filter(function (t) {
     return t;
   }).join('\n') : '';
 
-  var ret = "\nvar templates = {};\n";
+  var ret = "\nwindow.T = {};\n";
   ret += src;
 
   return ret;
